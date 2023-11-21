@@ -31,47 +31,45 @@ public class MedicineController {
         this.medicineService = medicineService;
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<Void> addMedicine(@RequestBody Medicine medicine) {
+    @PostMapping("/medicines")
+    public void addMedicine(Medicine medicine) {
         medicineService.addMedicine(medicine);
-        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{name}")
-    public ResponseEntity<Void> deleteMedicineByname(@PathVariable String name) {
+    @DeleteMapping("/medicines/{name}")
+    public ResponseEntity<Void> deleteMedicineByName(@PathVariable String name) {
         int id = drugService.getDrugByName(name).getId();
         Medicine medicine = medicineService.getMedicineById(id);
         medicineService.deleteMedicine(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping()
-    public ResponseEntity<List<Medicine>> getMedicines() {
-        List<Medicine> medicines = medicineService.getMedicines();
-        return new ResponseEntity<>(medicines, HttpStatus.OK);
+//    获得
+//    @GetMapping("medicines/all")
+//    public List<Medicine> getMedicines() {
+//        return medicineService.getMedicines();
+//    }
+
+    @GetMapping("/medicines/{id}")
+    public Medicine getMedicineById(@PathVariable int id) {
+        return medicineService.getMedicineById(id);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Medicine> getMedicineById(@PathVariable int id) {
-        Medicine medicine = medicineService.getMedicineById(id);
-        return new ResponseEntity<>(medicine, HttpStatus.OK);
-    }
-
-    @GetMapping("/{name}")
-    public ResponseEntity<Medicine> getMedicineByName(@PathVariable String name) {
+    @GetMapping("/medicines/{name}")
+    public Medicine getMedicineByName(@PathVariable String name) {
         int id = drugService.getDrugByName(name).getId();
-        Medicine medicine = medicineService.getMedicineById(id);
-        return new ResponseEntity<>(medicine, HttpStatus.OK);
+        return medicineService.getMedicineById(id);
     }
 
-    @PutMapping("/update")
+    @PutMapping("medicines")
     public ResponseEntity<Void> updateMedicineByname(@RequestBody String name) {
         int id = drugService.getDrugByName(name).getId();
         Medicine medicine = medicineService.getMedicineById(id);
         medicineService.updateMedicine(medicine);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @GetMapping("/get stock")
+    //获得库存信息stock
+    @GetMapping("/medicines/stock")
     public List<DrugStock>getStock(){
 
         List<Medicine> medicines = medicineService.getMedicines();

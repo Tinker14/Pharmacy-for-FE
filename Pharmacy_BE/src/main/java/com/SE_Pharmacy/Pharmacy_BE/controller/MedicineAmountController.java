@@ -4,8 +4,7 @@ import com.SE_Pharmacy.Pharmacy_BE.po.MedicineAmount;
 import com.SE_Pharmacy.Pharmacy_BE.service.MedicineAmountService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -16,23 +15,23 @@ public class MedicineAmountController {
     @Resource
     private MedicineAmountService medicineAmountService;
 
-    @RequestMapping("/insertMedicineAmount")
+    @PostMapping("/medicineAmounts")
     public void insertMedicineAmount(MedicineAmount medicineAmount){
         medicineAmountService.insertMedicineAmount(medicineAmount);
     }
 
-    @RequestMapping("/updateMedicineAmount")
+    @PutMapping("/medicineAmounts")
     public void updateMedicineAmount(MedicineAmount medicineAmount){
         medicineAmountService.updateMedicineAmount(medicineAmount);
     }
 
-    @RequestMapping("/deleteMedicineAmount")
-    public void deleteMedicineAmount(@Param("c_id") int cId, @Param("medicine_id") int medicineId){
-        medicineAmountService.deleteMedicineAmount(cId,medicineId);
+    @DeleteMapping("/medicineAmounts/{c_id}/{medicine_id}")
+    public void deleteMedicineAmount(@PathVariable int c_id, @PathVariable int medicine_id){
+        medicineAmountService.deleteMedicineAmount(c_id,medicine_id);
     }
 
-    @RequestMapping("/getMedicineAmountByCId")
-    public List<MedicineAmount> getMedicineAmountByCId(@Param("c_id") int cId){
-        return medicineAmountService.getMedicineAmountByCId(cId);
+    @GetMapping("/medicineAmounts/{c_id}")
+    public List<MedicineAmount> getMedicineAmountByCId(@PathVariable int c_id){
+        return medicineAmountService.getMedicineAmountByCId(c_id);
     }
 }

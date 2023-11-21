@@ -3,8 +3,7 @@ package com.SE_Pharmacy.Pharmacy_BE.controller;
 import com.SE_Pharmacy.Pharmacy_BE.po.Administrator;
 import com.SE_Pharmacy.Pharmacy_BE.service.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -14,28 +13,28 @@ public class AdministratorController {
     @Resource
     private AdministratorService administratorService;
 
-    @RequestMapping("/getAdministrator")
-    public Administrator getAdministratorById(int ano){
-        return administratorService.getAdministratorById(ano);
+    @GetMapping("/administrator/{id}")
+    public Administrator getAdministratorById(@PathVariable int id){
+        return administratorService.getAdministratorById(id);
     }
 
-    @RequestMapping("/insertAdministrator")
+    @PostMapping("/administrator")
     public void insertAdministrator(Administrator administrator){
         administratorService.insertAdministrator(administrator);
     }
 
-    @RequestMapping("/updateAdministrator")
+    @PutMapping("/administrator")
     public void updateAdministrator(Administrator administrator){
         administratorService.updateAdministrator(administrator);
     }
 
-    @RequestMapping("/deleteAdministrator")
-    public void deleteAdministrator(int ano){
-        administratorService.deleteAdministrator(ano);
+    @DeleteMapping("/administrator/{ad_id}")
+    public void deleteAdministrator(@PathVariable int ad_id){
+        administratorService.deleteAdministrator(ad_id);
     }
 
-    @RequestMapping("/getLoginUserUsingGet")
-    public Integer  getLoginUserUsingGet(int ad_id){
+    @GetMapping("/login/administrator/{ad_id}")
+    public Integer  getLoginUserUsingGet(@PathVariable int ad_id){
         return administratorService.getLoginUserUsingGet(ad_id);
     }
 }

@@ -7,8 +7,7 @@ import com.SE_Pharmacy.Pharmacy_BE.service.PatientService;
 import com.SE_Pharmacy.Pharmacy_BE.vo.CasesInformation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -25,33 +24,33 @@ public class CasesController {
     @Resource
     private PatientService patientService;
 
-    @RequestMapping("/insertCases")
+    @PostMapping("/cases")
     public void insertCases(Cases cases){
         casesService.insertCases(cases);
     }
 
-    @RequestMapping("/deleteCases")
-    public void deleteCases(Cases cases){
-        casesService.deleteCases(cases);
-    }
+//    @DeleteMapping("/cases/{id}")
+//    public void deleteCases(@PathVariable int id){
+//        casesService.deleteCases(cases);
+//    }
 
-    @RequestMapping("/updateCases")
+    @PutMapping("/cases")
     public void updateCases(Cases cases){
         casesService.updateCases(cases);
     }
 
-    @RequestMapping("/deCases")
-    public void deleteMedicines(@Param("c_id") int c_id){
+    @DeleteMapping("/cases/{c_id}")
+    public void deleteMedicines(@PathVariable int c_id){
         casesService.deleteMedicines(c_id);
     }
 
-    @RequestMapping("/getMedicine")
-    public List<Cases> getMedicine(@Param("c_id") int c_id){
-        return casesService.getMedicine(c_id);
-    }
+//    @GetMapping("/cases/medicineList/{c_id}")
+//    public List<Cases> getMedicine(@PathVariable int c_id){
+//        return casesService.getMedicine(c_id);
+//    }
 
-    @RequestMapping("/getCase")
-    public CasesInformation getCase(@Param("c_id") int c_id){
+    @GetMapping("/cases/{c_id}")
+    public CasesInformation getCase(@PathVariable int c_id){
         int p_id = casesService.getPidByCid(c_id);
         int d_id = casesService.getDidByCid(c_id);
         String p_name = patientService.getNameById(p_id);

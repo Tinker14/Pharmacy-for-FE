@@ -4,12 +4,12 @@ import org.apache.ibatis.annotations.Param;
 
 
 public interface AdministratorService {
-    Administrator getAdministratorById(int ano);
+    Administrator getAdministratorById(int ad_id);
     void insertAdministrator(Administrator administrator);
 
     void updateAdministrator(Administrator administrator);
 
-    void deleteAdministrator(int ano);
+    void deleteAdministrator(int ad_id);
 
     Integer getLoginUserUsingGet(int ad_id);
 }

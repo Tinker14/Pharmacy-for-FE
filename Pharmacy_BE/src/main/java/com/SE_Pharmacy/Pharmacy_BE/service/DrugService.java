@@ -15,4 +15,6 @@ public interface DrugService {
     Drug getDrugById(int id);
 
     void updateDrug(Drug drug);
+
+    Drug getDrugByName(String name);
 }

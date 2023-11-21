@@ -1,7 +1,5 @@
 package com.SE_Pharmacy.Pharmacy_BE.po;
 
-import io.swagger.models.auth.In;
-
 import java.util.Date;
 public class Medicine {
 
@@ -10,7 +8,7 @@ public class Medicine {
 
     private Date effectiveDate;
 
-    private Integer stock;
+    private int stock;
 
     public Integer getId() {
         return id;
@@ -28,7 +26,12 @@ public class Medicine {
         this.effectiveDate = effectiveDate;
     }
 
+    public int getStock() {
+        return stock;
+    }
 
-
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 }
 

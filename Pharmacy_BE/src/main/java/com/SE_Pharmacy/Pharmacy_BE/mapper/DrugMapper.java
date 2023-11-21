@@ -25,4 +25,7 @@ public interface DrugMapper {
             "dosage = #{dosage}, banned = #{banned}, unit = #{unit}, prescription = #{prescription}, " +
             "picture = #{picture}, price = #{price} WHERE id = #{id}")
     void updateDrug(Drug drug);
+
+    @Select("SELECT * FROM db_drugs WHERE name = #{name}")
+    Drug getDrugByName(String name);
 }

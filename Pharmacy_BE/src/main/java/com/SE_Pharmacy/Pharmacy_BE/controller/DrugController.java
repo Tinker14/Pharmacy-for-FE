@@ -29,11 +29,13 @@ public class DrugController {
     private MedicineAmountService medicineAmountService;
 
 
-
     @Autowired
-    public DrugController(DrugService drugService) {
+    public DrugController(DrugService drugService,MedicineAmountService medicineAmountService) {
         this.drugService = drugService;
+        this.medicineAmountService=medicineAmountService;
     }
+
+
 
     @PostMapping("/add")
     public ResponseEntity<Void> addDrug(@RequestBody Drug drug) {
@@ -65,8 +67,8 @@ public class DrugController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/getdrugs")
-    public List<MedicineList>getdrugs(int c_id){
+    @GetMapping("/get drugs")
+    public List<MedicineList> getdrugs(int c_id){
         List<MedicineAmount> medicineAmountList = medicineAmountService.getMedicineAmountByCId(c_id);
         List<MedicineList> medicineList = new List<MedicineList>() {
             @Override

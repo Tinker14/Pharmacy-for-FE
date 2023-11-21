@@ -43,4 +43,9 @@ public class DrugServiceImpl implements DrugService {
     public void updateDrug(Drug drug) {
         drugMapper.updateDrug(drug);
     }
+
+    @Override
+    public Drug getDrugByName(String name) {
+        return drugMapper.getDrugByName(name);
+    }
 }
